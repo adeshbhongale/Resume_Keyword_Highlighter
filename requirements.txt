@@ -34,6 +34,5 @@ scs==3.2.3
 six==1.16.0
 threadpoolctl==3.2.0
 tzdata==2023.3
-vboxapi==1.0
 virtualenv==20.24.6
 Werkzeug==0.15.5
