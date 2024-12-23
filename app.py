@@ -34,7 +34,7 @@ def predict_resume():
 
     
     pdf_content = file.read()
-    doc = fitz.Document(stream=pdf_content, filetype="pdf")
+    doc = fitz.open(stream=pdf_content, filetype="pdf")
     text = ""
     for page in doc:
         text += page.get_text()
