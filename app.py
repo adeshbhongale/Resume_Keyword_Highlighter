@@ -4,7 +4,7 @@ import base64
 import google.generativeai as genai
 import markdown2
 import io
-import fitz
+from PyPDF2 import PdfReader
 
 app = Flask(__name__)
 
@@ -32,12 +32,21 @@ def predict_resume():
     prompt1 = request.form['prompt1']
     prompt2 = request.form['prompt2']
 
+    print(file)
+
+    # Read the file's binary content
+
+    # Use PdfReader with binary stream
+            
     
-    pdf_content = file.read()
-    doc = fitz.open(stream=pdf_content, filetype="pdf")
+    # pdf_content = b'...'  # Byte content of the PDF
+    # with open(file, "rb") as f:
+    #     f.write(pdf_content)
+    binary_stream = file.read()
+    pdf_reader = PdfReader(io.BytesIO(binary_stream)) 
     text = ""
-    for page in doc:
-        text += page.get_text()
+    for page in pdf_reader.pages:
+        text +=  page.extract_text()
     user_input = text + prompt1 + prompt2
 
 
